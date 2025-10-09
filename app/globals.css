@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+/* ITC Avant Garde Gothic Std Font Faces */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Std Bold Condensed';
+  src: url('/ITCAvantGardeStd-Bold-Condensed.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Std Medium Condensed';
+  src: url('/ITCAvantGardeStd-Medium-Condensed.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Std Book Condensed';
+  src: url('/ITCAvantGardeStd-Book-Condensed.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -22,5 +44,64 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'ITC Avant Garde Gothic Std Book Condensed', Arial, Helvetica, sans-serif;
+}
+
+/* Titulos grandes 48px - Bold-condensed */
+.title-large {
+  font-family: 'ITC Avant Garde Gothic Std Bold Condensed', Arial, sans-serif;
+  font-size: 42px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+/* Titulos medios 32px - Medium-condensed */
+.title-medium {
+  font-family: 'ITC Avant Garde Gothic Std Medium Condensed', Arial, sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+/* Titulos medios 32px - Medium-condensed */
+.title-normal {
+  font-family: 'ITC Avant Garde Gothic Std Medium Condensed', Arial, sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+/* Parrafos 16px - Book-condensed */
+.paragraph {
+  font-family: 'ITC Avant Garde Gothic Std Book Condensed', Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* Botones 16px - Bold-condensed */
+.button-text {
+  font-family: 'ITC Avant Garde Gothic Std Bold Condensed', Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Input 16px - Book-condensed */
+.input-text {
+  font-family: 'ITC Avant Garde Gothic Std Book Condensed', Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.input-text::placeholder {
+  color: #919191;
+}
+
+.gradient-bg {
+  background: linear-gradient(to bottom, #FE9E48 0%, #FDDE81 100%);
 }

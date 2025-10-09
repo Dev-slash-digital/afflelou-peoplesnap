@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @font-face {
+      font-family: 'ITC Avant Garde Gothic Std';
+      src: url('./ITCAvantGardeStd-Bold-Condensed.otf') format('opentype');
+      font-weight: 700;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #5B6FE8;
+      font-family: 'ITC Avant Garde Gothic Std', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 40px;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      width: 100%;
+    }
+    
+    .title-main {
+      font-size: 120px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .title-highlight {
+      background: white;
+      color: #5B6FE8;
+      padding: 10px 40px;
+      display: inline-block;
+      font-size: 120px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 1;
+    }
+    
+    .photo-slot {
+      background: #000;
+      border: 8px solid #5B6FE8;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .footer {
+      text-align: center;
+      width: 100%;
+    }
+    
+    .logo {
+      color: white;
+      font-size: 180px;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -5px;
+    }
+    
+    .logo-sub {
+      font-size: 100px;
+      font-weight: 700;
+      margin-top: -20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title-main">MA MAGIC SUNNY,</div>
+    <div class="title-highlight">MA CRÉATION !</div>
+  </div>
+  
+  <div class="grid-container">
+    <div class="photo-slot" id="photo-1">
+      <img src="" alt="Photo 1" />
+    </div>
+    <div class="photo-slot" id="photo-2">
+      <img src="" alt="Photo 2" />
+    </div>
+    <div class="photo-slot" id="photo-3">
+      <img src="" alt="Photo 3" />
+    </div>
+    <div class="photo-slot" id="photo-4">
+      <img src="" alt="Photo 4" />
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div class="logo">MAGIC</div>
+    <div class="logo-sub">AFFLELOU</div>
+  </div>
+</body>
+</html>

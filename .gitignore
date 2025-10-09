@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# documentation files (not needed in production)
+/*.md
+!README.md
+
+# unused server-side files (app works 100% in client)
+lib/videoGenerator.ts
+lib/templateRenderer.ts
+app/api/
