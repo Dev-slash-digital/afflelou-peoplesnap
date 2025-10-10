@@ -40,7 +40,8 @@ export default function FinalProcessingPage() {
 
       if (useServerGeneration) {
         // Generar video en el servidor
-        const response = await fetch('/api/generate-video', {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
+        const response = await fetch(`${apiUrl}/api/generate-video`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -54,7 +55,11 @@ export default function FinalProcessingPage() {
         }
 
         const data = await response.json();
-        setVideoUrl(data.videoUrl);
+        // Construir URL completa del video
+        const fullVideoUrl = data.videoUrl.startsWith('http') 
+          ? data.videoUrl 
+          : `${apiUrl}${data.videoUrl}`;
+        setVideoUrl(fullVideoUrl);
         setIsGenerating(false);
       } else {
         // Generar video en el cliente (método original)
