@@ -35,16 +35,39 @@ export default function FinalProcessingPage() {
         return;
       }
 
-      // Generar video en el cliente
-      const { VideoGeneratorClient } = await import('@/lib/videoGeneratorClient');
-      const generator = new VideoGeneratorClient();
+      // Determinar método de generación (servidor o cliente)
+      const useServerGeneration = process.env.NEXT_PUBLIC_USE_SERVER_GENERATION === 'true';
 
-      const videoBlob = await generator.generateVideo(photos);
+      if (useServerGeneration) {
+        // Generar video en el servidor
+        const response = await fetch('/api/generate-video', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ photos }),
+        });
 
-      // Crear URL del blob
-      const url = URL.createObjectURL(videoBlob);
-      setVideoUrl(url);
-      setIsGenerating(false);
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Error al generar el video');
+        }
+
+        const data = await response.json();
+        setVideoUrl(data.videoUrl);
+        setIsGenerating(false);
+      } else {
+        // Generar video en el cliente (método original)
+        const { VideoGeneratorClient } = await import('@/lib/videoGeneratorClient');
+        const generator = new VideoGeneratorClient();
+
+        const videoBlob = await generator.generateVideo(photos);
+
+        // Crear URL del blob
+        const url = URL.createObjectURL(videoBlob);
+        setVideoUrl(url);
+        setIsGenerating(false);
+      }
     } catch (err) {
       console.error('Error:', err);
       setError(t.finalProcessing.error);
