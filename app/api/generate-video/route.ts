@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     if (!photos || !Array.isArray(photos) || photos.length !== 4) {
       return NextResponse.json(
         { error: 'Se requieren exactamente 4 fotos' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       if (!photo || typeof photo !== 'string' || !photo.startsWith('data:image')) {
         return NextResponse.json(
           { error: 'Formato de foto inválido' },
-          { status: 400 }
+          { status: 400, headers: corsHeaders }
         );
       }
     }
