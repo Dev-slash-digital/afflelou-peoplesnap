@@ -56,8 +56,8 @@ export default function FinalProcessingPage() {
 
         const data = await response.json();
         // Construir URL completa del video
-        const fullVideoUrl = data.videoUrl.startsWith('http') 
-          ? data.videoUrl 
+        const fullVideoUrl = data.videoUrl.startsWith('http')
+          ? data.videoUrl
           : `${apiUrl}${data.videoUrl}`;
         setVideoUrl(fullVideoUrl);
         setIsGenerating(false);
@@ -209,9 +209,13 @@ export default function FinalProcessingPage() {
                   onClick={handleDownload}
                   className="flex-1 flex items-center justify-center gap-2"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-                  </svg>
+                  <Image
+                    src="/descarga-icon.svg"
+                    alt="Descargar"
+                    width={20}
+                    height={20}
+                    unoptimized
+                  />
                   {t.finalProcessing.buttonDownload}
                 </Button>
 
@@ -221,9 +225,13 @@ export default function FinalProcessingPage() {
                   onClick={handleShare}
                   className="flex-1 flex items-center justify-center gap-2"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
-                  </svg>
+                  <Image
+                    src="/compartir-icon.svg"
+                    alt="Compartir"
+                    width={20}
+                    height={20}
+                    unoptimized
+                  />
                   {t.finalProcessing.buttonShare}
                 </Button>
               </div>
@@ -238,9 +246,14 @@ export default function FinalProcessingPage() {
                 onClick={copyToClipboard}
                 className="bg-white/20 p-4 rounded-lg cursor-pointer hover:bg-white/30 transition-all flex items-center gap-3"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" className="flex-shrink-0">
-                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
-                </svg>
+                <Image
+                  src="/copie-icon.svg"
+                  alt="Copiar"
+                  width={20}
+                  height={20}
+                  unoptimized
+                  className="flex-shrink-0"
+                />
                 <p className="paragraph text-white text-sm flex-1">
                   {t.finalProcessing.copyText}
                 </p>

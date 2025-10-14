@@ -48,12 +48,9 @@ export default function ValidateSelfie() {
   };
 
   const handleRetake = () => {
-    // Clear current photo
+    // Clear current photo only (not all photos)
     sessionStorage.removeItem('current-photo');
-    // Clear all saved photos
-    localStorage.removeItem('selfie-photos');
-    setPhotos([]);
-    // Go back to take selfie
+    // Go back to take selfie (mantiene las fotos ya guardadas)
     router.push('/take-selfie');
   };
 
