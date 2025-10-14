@@ -103,7 +103,7 @@ export default function FormPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-20">
+      <div className="flex flex-col items-center justify-center px-6 pb-20">
         {/* Loading Bar */}
         <div className="w-full max-w-sm mb-12">
           <div className="h-2 bg-white/30 rounded-full overflow-hidden">

@@ -86,9 +86,9 @@ export default function ValidateSelfie() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-20">
+      <div className="flex flex-col items-center justify-center px-6 pb-20">
         {/* Counter Circles */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-4">
           {[0, 1, 2, 3].map((index) => (
             <div
               key={index}
@@ -104,12 +104,12 @@ export default function ValidateSelfie() {
         </div>
 
         {/* Title Medium */}
-        <h2 className="title-medium text-white text-center mb-8">
+        <h2 className="title-medium text-white text-center mb-4">
           {t.validateSelfie.title}
         </h2>
 
         {/* Photo Preview */}
-        <div className="relative w-full max-w-sm aspect-square mb-8 bg-black/20 rounded-lg overflow-hidden">
+        <div className="relative w-full max-w-sm aspect-square mb-4 bg-black/20 rounded-lg overflow-hidden">
           <img
             src={currentPhoto}
             alt="Selfie preview"

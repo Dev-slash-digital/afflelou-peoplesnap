@@ -80,7 +80,7 @@ export default function TakeSelfie() {
       </div>
 
       {/* Logo */}
-      <div className="flex justify-center pt-16 pb-8">
+      <div className="flex justify-center pt-16 pb-4">
         <Image
           src="/logo-svg.svg"
           alt="Magic Afflelou Logo"
@@ -93,14 +93,14 @@ export default function TakeSelfie() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-20">
+      <div className="flex flex-col items-center justify-center px-6 pb-20">
         {/* Title Medium */}
-        <h2 className="title-medium text-white text-center mb-8">
+        <h2 className="title-medium text-white text-center mb-4">
           {t.takeSelfie.title}
         </h2>
 
         {/* Camera Preview */}
-        <div className="relative w-full max-w-sm aspect-square mb-8 bg-black/20 overflow-hidden">
+        <div className="relative w-full max-w-sm aspect-square mb-4 bg-black/20 overflow-hidden">
           <video
             ref={videoRef}
             autoPlay

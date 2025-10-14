@@ -158,7 +158,7 @@ export default function FinalProcessingPage() {
       </div>
 
       {/* Logo */}
-      <div className="flex justify-center pt-16 pb-8">
+      <div className="flex justify-center pt-16 pb-4">
         <Image
           src="/logo-svg.svg"
           alt="Magic Afflelou Logo"
@@ -173,7 +173,7 @@ export default function FinalProcessingPage() {
       {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 pb-20">
         {/* Title */}
-        <h1 className="title-normal text-white text-center mb-8 max-w-md">
+        <h1 className="title-normal text-white text-center mb-4 max-w-md">
           {t.finalProcessing.title}
         </h1>
 
@@ -188,7 +188,7 @@ export default function FinalProcessingPage() {
         {videoUrl && !isGenerating && (
           <>
             {/* Video Preview */}
-            <div className="w-full max-w-sm mb-8 bg-black/20 overflow-hidden">
+            <div className="w-full max-w-sm mb-4 bg-black/20 overflow-hidden">
               <video
                 ref={videoRef}
                 src={videoUrl}
@@ -201,7 +201,7 @@ export default function FinalProcessingPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="w-full max-w-sm space-y-4 mb-8">
+            <div className="w-full max-w-sm space-y-4 mb-4">
               <div className="flex gap-4">
                 <Button
                   variant="primary"
@@ -238,7 +238,7 @@ export default function FinalProcessingPage() {
             </div>
 
             {/* Copy Text */}
-            <div className="w-full max-w-sm mb-8">
+            <div className="w-full max-w-sm mb-4">
               <p className="paragraph text-white text-center mb-4 text-sm">
                 {t.finalProcessing.copyLabel}
               </p>
