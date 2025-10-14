@@ -39,9 +39,13 @@ export async function POST(request: NextRequest) {
     const generator = new VideoGenerator();
     const videoUrl = await generator.generateVideo(photos);
 
+    // Convertir la URL de /temp/video-xxx.mp4 a /api/video/video-xxx.mp4
+    const filename = videoUrl.split('/').pop();
+    const apiVideoUrl = `/api/video/${filename}`;
+
     return NextResponse.json({
       success: true,
-      videoUrl,
+      videoUrl: apiVideoUrl,
     }, { headers: corsHeaders });
   } catch (error) {
     console.error('Error generating video:', error);
