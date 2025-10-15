@@ -6,7 +6,9 @@ export const translations = {
         start: {
             titleMedium: "MA MAGIC SUNNY",
             titleLarge: "MA CRÉATION !",
-            button: "CONTINUER"
+            button: "CONTINUER",
+            termsCheckbox: "J'ACCEPTE LES CONDITIONS GÉNÉRALES D'UTILISATION",
+            termsRequired: "VOUS DEVEZ ACCEPTER LES CONDITIONS GÉNÉRALES"
         },
 
         // Página Permission
@@ -42,7 +44,9 @@ export const translations = {
             button: "CONTINUER",
             buttonLoading: "TRAITEMENT...",
             errorValidation: "VEUILLEZ REMPLIR TOUS LES CHAMPS",
-            errorSubmit: "UNE ERREUR EST SURVENUE. VEUILLEZ RÉESSAYER."
+            errorSubmit: "UNE ERREUR EST SURVENUE. VEUILLEZ RÉESSAYER.",
+            termsCheckbox: "J'ACCEPTE LES CONDITIONS GÉNÉRALES D'UTILISATION",
+            termsRequired: "VOUS DEVEZ ACCEPTER LES CONDITIONS GÉNÉRALES"
         },
 
         // Página Final Processing
@@ -68,7 +72,9 @@ export const translations = {
         start: {
             titleMedium: "MY MAGIC SUNNY",
             titleLarge: "MY CREATION!",
-            button: "CONTINUE"
+            button: "CONTINUE",
+            termsCheckbox: "I ACCEPT THE TERMS AND CONDITIONS",
+            termsRequired: "YOU MUST ACCEPT THE TERMS AND CONDITIONS"
         },
 
         // Permission Page
@@ -104,7 +110,9 @@ export const translations = {
             button: "CONTINUE",
             buttonLoading: "PROCESSING...",
             errorValidation: "PLEASE FILL IN ALL FIELDS",
-            errorSubmit: "AN ERROR OCCURRED. PLEASE TRY AGAIN."
+            errorSubmit: "AN ERROR OCCURRED. PLEASE TRY AGAIN.",
+            termsCheckbox: "I ACCEPT THE TERMS AND CONDITIONS",
+            termsRequired: "YOU MUST ACCEPT THE TERMS AND CONDITIONS"
         },
 
         // Final Processing Page

@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { useTranslation } from '@/hooks/useTranslation';
+import { buildPath } from '@/lib/navigation';
 
 export default function ValidateSelfie() {
   const router = useRouter();
+  const pathname = usePathname();
   const { t, language, changeLanguage } = useTranslation();
   const [photos, setPhotos] = useState<string[]>([]);
   const [currentPhoto, setCurrentPhoto] = useState<string | null>(null);
@@ -26,9 +28,9 @@ export default function ValidateSelfie() {
       setCurrentPhoto(photoData);
     } else {
       // No photo, go back to take selfie
-      router.push('/take-selfie');
+      router.push(buildPath('/take-selfie', pathname));
     }
-  }, [router]);
+  }, [router, pathname]);
 
   const handleValidate = () => {
     if (!currentPhoto) return;
@@ -40,10 +42,10 @@ export default function ValidateSelfie() {
 
     if (updatedPhotos.length >= 4) {
       // All photos taken, go to form
-      router.push('/form');
+      router.push(buildPath('/form', pathname));
     } else {
       // Take another photo
-      router.push('/take-selfie');
+      router.push(buildPath('/take-selfie', pathname));
     }
   };
 
@@ -51,7 +53,7 @@ export default function ValidateSelfie() {
     // Clear current photo only (not all photos)
     sessionStorage.removeItem('current-photo');
     // Go back to take selfie (mantiene las fotos ya guardadas)
-    router.push('/take-selfie');
+    router.push(buildPath('/take-selfie', pathname));
   };
 
   if (!currentPhoto) {
@@ -65,7 +67,7 @@ export default function ValidateSelfie() {
   return (
     <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
       {/* Language Selector */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-4 right-6 z-10">
         <LanguageSelector 
           defaultLanguage={language}
           onLanguageChange={changeLanguage}
@@ -73,7 +75,7 @@ export default function ValidateSelfie() {
       </div>
 
       {/* Logo */}
-      <div className="flex justify-center pt-16 pb-4">
+      <div className="flex justify-center pt-14 pb-4">
         <Image
           src="/logo-svg.svg"
           alt="Magic Afflelou Logo"
@@ -86,13 +88,13 @@ export default function ValidateSelfie() {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col items-center justify-center px-6 pb-20">
+      <div className="flex flex-col items-center justify-center px-10 pb-20">
         {/* Counter Circles */}
-        <div className="flex gap-3 mb-4">
+        <div className="flex gap-3 mb-2">
           {[0, 1, 2, 3].map((index) => (
             <div
               key={index}
-              className={`w-10 h-10 rounded-full border-2 border-white transition-all ${
+              className={`w-8 h-8 rounded-full border-2 border-white transition-all ${
                 index < photos.length
                   ? 'bg-white'
                   : index === photos.length
@@ -104,12 +106,12 @@ export default function ValidateSelfie() {
         </div>
 
         {/* Title Medium */}
-        <h2 className="title-medium text-white text-center mb-4">
+        <h2 className="title-medium text-white text-center mb-2">
           {t.validateSelfie.title}
         </h2>
 
         {/* Photo Preview */}
-        <div className="relative w-full max-w-sm aspect-square mb-4 bg-black/20 rounded-lg overflow-hidden">
+        <div className="relative w-full max-w-sm aspect-square mb-4 bg-black/20 overflow-hidden">
           <img
             src={currentPhoto}
             alt="Selfie preview"

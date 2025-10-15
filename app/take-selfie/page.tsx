@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { useTranslation } from '@/hooks/useTranslation';
+import { buildPath } from '@/lib/navigation';
 
 export default function TakeSelfie() {
   const router = useRouter();
+  const pathname = usePathname();
   const { t, language, changeLanguage } = useTranslation();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -36,7 +38,7 @@ export default function TakeSelfie() {
     } catch (error) {
       console.error('Error accessing camera:', error);
       alert(t.takeSelfie.errorMessage);
-      router.push('/permission');
+      router.push(buildPath('/permission', pathname));
     }
   };
 
@@ -65,14 +67,14 @@ export default function TakeSelfie() {
 
       // Navigate to validate page
       stopCamera();
-      router.push('/validate-selfie');
+      router.push(buildPath('/validate-selfie', pathname));
     }
   };
 
   return (
     <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
       {/* Language Selector */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-4 right-6 z-10">
         <LanguageSelector 
           defaultLanguage={language}
           onLanguageChange={changeLanguage}
@@ -80,7 +82,7 @@ export default function TakeSelfie() {
       </div>
 
       {/* Logo */}
-      <div className="flex justify-center pt-16 pb-4">
+      <div className="flex justify-center pt-14 pb-4">
         <Image
           src="/logo-svg.svg"
           alt="Magic Afflelou Logo"
@@ -93,9 +95,9 @@ export default function TakeSelfie() {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col items-center justify-center px-6 pb-20">
+      <div className="flex flex-col items-center justify-center px-10 pb-20">
         {/* Title Medium */}
-        <h2 className="title-medium text-white text-center mb-4">
+        <h2 className="title-medium text-white text-center mb-2">
           {t.takeSelfie.title}
         </h2>
 

@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 // import { IconButton } from '@/components/IconButton';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { useTranslation } from '@/hooks/useTranslation';
+import { buildPath } from '@/lib/navigation';
 
 export default function FinalProcessingPage() {
   const router = useRouter();
+  const pathname = usePathname();
   const { t, language, changeLanguage } = useTranslation();
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(true);
@@ -25,13 +27,13 @@ export default function FinalProcessingPage() {
       // Obtener fotos de localStorage
       const savedPhotos = localStorage.getItem('selfie-photos');
       if (!savedPhotos) {
-        router.push('/start');
+        router.push(buildPath('/start', pathname));
         return;
       }
 
       const photos = JSON.parse(savedPhotos);
       if (photos.length < 4) {
-        router.push('/take-selfie');
+        router.push(buildPath('/take-selfie', pathname));
         return;
       }
 
@@ -135,7 +137,7 @@ export default function FinalProcessingPage() {
     // Limpiar todo
     localStorage.removeItem('selfie-photos');
     sessionStorage.removeItem('current-photo');
-    router.push('/start');
+    router.push(buildPath('/start', pathname));
   };
 
   const copyToClipboard = async () => {
@@ -150,7 +152,7 @@ export default function FinalProcessingPage() {
   return (
     <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
       {/* Language Selector */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-4 right-6 z-10">
         <LanguageSelector
           defaultLanguage={language}
           onLanguageChange={changeLanguage}
@@ -158,7 +160,7 @@ export default function FinalProcessingPage() {
       </div>
 
       {/* Logo */}
-      <div className="flex justify-center pt-16 pb-4">
+      <div className="flex justify-center pt-14 pb-4">
         <Image
           src="/logo-svg.svg"
           alt="Magic Afflelou Logo"
@@ -171,7 +173,7 @@ export default function FinalProcessingPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-20">
+      <div className="flex-1 flex flex-col items-center justify-center px-10 pb-20">
         {/* Title */}
         <h1 className="title-normal text-white text-center mb-4 max-w-md">
           {t.finalProcessing.title}
@@ -188,7 +190,7 @@ export default function FinalProcessingPage() {
         {videoUrl && !isGenerating && (
           <>
             {/* Video Preview */}
-            <div className="w-full max-w-sm mb-4 bg-black/20 overflow-hidden">
+            <div className="w-full max-w-sm mb-2 bg-black/20 overflow-hidden">
               <video
                 ref={videoRef}
                 src={videoUrl}
@@ -201,7 +203,7 @@ export default function FinalProcessingPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="w-full max-w-sm space-y-4 mb-4">
+            <div className="w-full max-w-sm space-y-4 mb-2">
               <div className="flex gap-4">
                 <Button
                   variant="primary"
@@ -238,7 +240,7 @@ export default function FinalProcessingPage() {
             </div>
 
             {/* Copy Text */}
-            <div className="w-full max-w-sm mb-4">
+            <div className="w-full max-w-sm mb-2">
               <p className="paragraph text-white text-center mb-4 text-sm">
                 {t.finalProcessing.copyLabel}
               </p>

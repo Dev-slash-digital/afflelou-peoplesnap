@@ -10,6 +10,7 @@ export interface RegistrationData {
   photo_2?: string | null;
   photo_3?: string | null;
   photo_4?: string | null;
+  store?: string | null;
 }
 
 export async function saveRegistration(data: RegistrationData) {

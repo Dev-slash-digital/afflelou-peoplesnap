@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { useTranslation } from '@/hooks/useTranslation';
+import { buildPath } from '@/lib/navigation';
 
 export default function PermisoPage() {
   const router = useRouter();
+  const pathname = usePathname();
   const { t, language, changeLanguage } = useTranslation();
   const [isRequesting, setIsRequesting] = useState(false);
 
@@ -24,7 +26,7 @@ export default function PermisoPage() {
       stream.getTracks().forEach(track => track.stop());
 
       // Navigate to next page
-      router.push('/take-selfie', { scroll: false });
+      router.push(buildPath('/take-selfie', pathname), { scroll: false });
     } catch (error) {
       console.error('Camera permission denied:', error);
       alert(t.permission.errorMessage);
@@ -35,7 +37,7 @@ export default function PermisoPage() {
   return (
     <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
       {/* Language Selector */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-4 right-6 z-10">
         <LanguageSelector 
           defaultLanguage={language}
           onLanguageChange={changeLanguage}

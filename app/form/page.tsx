@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { useTranslation } from '@/hooks/useTranslation';
+import { buildPath } from '@/lib/navigation';
 
 export default function FormPage() {
   const router = useRouter();
+  const pathname = usePathname();
   const { t, language, changeLanguage } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -20,18 +22,27 @@ export default function FormPage() {
   });
 
   useEffect(() => {
+    // Extract and save store from URL
+    const pathParts = pathname.split('/').filter(Boolean);
+    const knownRoutes = ['start', 'permission', 'take-selfie', 'validate-selfie', 'form', 'final-processing'];
+    
+    if (pathParts.length > 0 && !knownRoutes.includes(pathParts[0])) {
+      const storeName = pathParts[0];
+      localStorage.setItem('current-store', storeName);
+    }
+
     // Check if user has taken 4 photos
     const savedPhotos = localStorage.getItem('selfie-photos');
     if (!savedPhotos) {
-      router.push('/start');
+      router.push(buildPath('/start', pathname));
       return;
     }
     
     const photos = JSON.parse(savedPhotos);
     if (photos.length < 4) {
-      router.push('/take-selfie');
+      router.push(buildPath('/take-selfie', pathname));
     }
-  }, [router]);
+  }, [router, pathname]);
 
   const handleInputChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
@@ -51,6 +62,9 @@ export default function FormPage() {
       const savedPhotos = localStorage.getItem('selfie-photos');
       const photos = savedPhotos ? JSON.parse(savedPhotos) : [];
 
+      // Get store from localStorage
+      const store = localStorage.getItem('current-store');
+
       // Prepare data for Supabase
       const registrationData = {
         nom: formData.nom,
@@ -61,17 +75,21 @@ export default function FormPage() {
         photo_2: photos[1] || null,
         photo_3: photos[2] || null,
         photo_4: photos[3] || null,
+        store: store || null,
       };
 
       // Send to Supabase
       const { saveRegistration } = await import('@/lib/supabase');
       await saveRegistration(registrationData);
 
+      // Clear store after successful submission
+      localStorage.removeItem('current-store');
+
       // NO limpiar las fotos aquí - se necesitan en /final-processing
       // Las fotos se limpiarán después de generar el video
 
       // Navigate to final processing page
-      router.push('/final-processing');
+      router.push(buildPath('/final-processing', pathname));
     } catch (error) {
       console.error('Error submitting form:', error);
       alert(t.form.errorSubmit);
@@ -82,7 +100,7 @@ export default function FormPage() {
   return (
     <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
       {/* Language Selector */}
-      <div className="absolute top-6 right-6 z-10">
+      <div className="absolute top-4 right-6 z-10">
         <LanguageSelector 
           defaultLanguage={language}
           onLanguageChange={changeLanguage}
@@ -90,7 +108,7 @@ export default function FormPage() {
       </div>
 
       {/* Logo */}
-      <div className="flex justify-center pt-16 pb-8">
+      <div className="flex justify-center pt-14 pb-8">
         <Image
           src="/logo-svg.svg"
           alt="Magic Afflelou Logo"
