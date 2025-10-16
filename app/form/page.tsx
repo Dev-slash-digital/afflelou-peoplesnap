@@ -171,25 +171,14 @@ export default function FormPage() {
               value={formatDateForDisplay(formData.dateNaissance)}
               readOnly
               disabled={isLoading}
-              onClick={() => {
-                if (!isLoading) {
-                  const dateInput = document.getElementById('hidden-date-input') as HTMLInputElement;
-                  if (dateInput) {
-                    dateInput.focus();
-                    dateInput.showPicker();
-                  }
-                }
-              }}
               className="input-text w-full px-4 py-3 bg-white text-black border-none outline-none transition-all duration-200 focus:ring-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             />
             <input
-              id="hidden-date-input"
               type="date"
               value={formData.dateNaissance}
               onChange={handleInputChange('dateNaissance')}
               disabled={isLoading}
-              className="absolute inset-0 opacity-0 cursor-pointer"
-              style={{ zIndex: 1 }}
+              className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
             />
           </div>
         </div>
