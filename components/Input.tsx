@@ -5,6 +5,7 @@ interface InputProps {
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
   disabled?: boolean;
   required?: boolean;
   className?: string;
@@ -16,6 +17,7 @@ export const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   onChange,
+  onClick,
   disabled = false,
   required = false,
   className = '',
@@ -37,6 +39,7 @@ export const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onClick={onClick}
         disabled={disabled}
         required={required}
         className={`${baseStyles} ${dateStyles} ${className}`}

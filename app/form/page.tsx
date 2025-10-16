@@ -48,6 +48,12 @@ export default function FormPage() {
     setFormData(prev => ({ ...prev, [field]: e.target.value }));
   };
 
+  const formatDateForDisplay = (dateString: string) => {
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
   const handleSubmit = async () => {
     // Validate form
     if (!formData.nom || !formData.prenom || !formData.email || !formData.dateNaissance) {
@@ -158,13 +164,29 @@ export default function FormPage() {
             disabled={isLoading}
           />
 
-          <Input
-            type="date"
-            placeholder={t.form.placeholderDate}
-            value={formData.dateNaissance}
-            onChange={handleInputChange('dateNaissance')}
-            disabled={isLoading}
-          />
+          <div className="relative w-full">
+            <input
+              type="text"
+              placeholder={t.form.placeholderDate}
+              value={formatDateForDisplay(formData.dateNaissance)}
+              readOnly
+              disabled={isLoading}
+              onClick={() => {
+                const dateInput = document.getElementById('hidden-date-input') as HTMLInputElement;
+                if (dateInput) dateInput.showPicker();
+              }}
+              className="input-text w-full px-4 py-3 bg-white text-black border-none outline-none transition-all duration-200 focus:ring-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            />
+            <input
+              id="hidden-date-input"
+              type="date"
+              value={formData.dateNaissance}
+              onChange={handleInputChange('dateNaissance')}
+              disabled={isLoading}
+              className="absolute opacity-0 pointer-events-none"
+              style={{ width: 0, height: 0 }}
+            />
+          </div>
         </div>
 
         {/* Button */}
