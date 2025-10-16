@@ -21,8 +21,8 @@ export const Input: React.FC<InputProps> = ({
   className = '',
   label,
 }) => {
-  const baseStyles = 'input-text w-full px-4 py-3 bg-white text-black border-none outline-none transition-all duration-200 focus:ring-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed';
-  const dateStyles = type === 'date' ? 'text-sm' : '';
+  const baseStyles = 'input-text w-full bg-white text-black border-none outline-none transition-all duration-200 focus:ring-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed';
+  const dateStyles = type === 'date' ? 'text-xs px-2 py-3' : 'px-4 py-3';
 
   return (
     <div className="w-full">

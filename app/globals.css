@@ -102,6 +102,39 @@ body {
   color: #919191;
 }
 
+/* Date input specific styles to prevent overflow */
+input[type="date"] {
+  font-size: 11px !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  text-transform: none !important;
+  letter-spacing: -0.5px !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+  padding: 0 2px;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  padding: 0 1px;
+}
+
 .gradient-bg {
   background: linear-gradient(to bottom, #FE9E48 0%, #FDDE81 100%);
 }
