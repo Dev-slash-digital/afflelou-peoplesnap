@@ -172,8 +172,13 @@ export default function FormPage() {
               readOnly
               disabled={isLoading}
               onClick={() => {
-                const dateInput = document.getElementById('hidden-date-input') as HTMLInputElement;
-                if (dateInput) dateInput.showPicker();
+                if (!isLoading) {
+                  const dateInput = document.getElementById('hidden-date-input') as HTMLInputElement;
+                  if (dateInput) {
+                    dateInput.focus();
+                    dateInput.showPicker();
+                  }
+                }
               }}
               className="input-text w-full px-4 py-3 bg-white text-black border-none outline-none transition-all duration-200 focus:ring-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             />
@@ -183,8 +188,8 @@ export default function FormPage() {
               value={formData.dateNaissance}
               onChange={handleInputChange('dateNaissance')}
               disabled={isLoading}
-              className="absolute opacity-0 pointer-events-none"
-              style={{ width: 0, height: 0 }}
+              className="absolute inset-0 opacity-0 cursor-pointer"
+              style={{ zIndex: 1 }}
             />
           </div>
         </div>
