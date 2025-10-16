@@ -142,7 +142,7 @@ export const translations = {
         // Take Selfie Page
         takeSelfie: {
             title: "TAKE 4 SELFIES!",
-            button: "NEXT PICTURE",
+            button: "TAKE A PHOTO",
             loading: "LOADING CAMERA...",
             errorMessage: "UNABLE TO ACCESS CAMERA"
         },
@@ -150,7 +150,7 @@ export const translations = {
         // Validate Selfie Page
         validateSelfie: {
             title: "TAKE 4 SELFIES!",
-            buttonValidate: "VALIDATE",
+            buttonValidate: "NEXT PICTURE",
             buttonRetake: "RETAKE",
             loading: "LOADING..."
         },
