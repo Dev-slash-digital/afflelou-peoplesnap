@@ -106,7 +106,7 @@ export default function InicioPage() {
         </h1> */}
 
         {/* Checkbox de términos */}
-        <div className="mb-4 w-full max-w-xs">
+        <div className="flex items-center justify-center mb-4 w-full max-w-xs">
           <label className="flex items-center space-x-3 cursor-pointer">
             <input
               type="checkbox"

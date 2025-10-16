@@ -22,6 +22,7 @@ export const Input: React.FC<InputProps> = ({
   label,
 }) => {
   const baseStyles = 'input-text w-full px-4 py-3 bg-white text-black border-none outline-none transition-all duration-200 focus:ring-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed';
+  const dateStyles = type === 'date' ? 'text-sm' : '';
 
   return (
     <div className="w-full">
@@ -38,7 +39,7 @@ export const Input: React.FC<InputProps> = ({
         onChange={onChange}
         disabled={disabled}
         required={required}
-        className={`${baseStyles} ${className}`}
+        className={`${baseStyles} ${dateStyles} ${className}`}
       />
     </div>
   );

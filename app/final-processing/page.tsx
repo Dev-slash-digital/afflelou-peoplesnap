@@ -150,7 +150,7 @@ export default function FinalProcessingPage() {
   };
 
   return (
-    <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
+    <div className="min-h-screen gradient-bg flex flex-col items-center justify-center overflow-hidden">
       {/* Language Selector */}
       <div className="absolute top-4 right-6 z-10">
         <LanguageSelector
@@ -190,7 +190,7 @@ export default function FinalProcessingPage() {
         {videoUrl && !isGenerating && (
           <>
             {/* Video Preview */}
-            <div className="w-full max-w-sm mb-2 bg-black/20 overflow-hidden">
+            <div className="w-full max-w-sm mb-2 bg-black/20 overflow-hidden mx-auto">
               <video
                 ref={videoRef}
                 src={videoUrl}
@@ -203,13 +203,13 @@ export default function FinalProcessingPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="w-full max-w-sm space-y-4 mb-2">
-              <div className="flex gap-4">
+            <div className="w-full max-w-sm space-y-4 mb-2 mx-auto">
+              <div className="flex gap-4 justify-center">
                 <Button
                   variant="primary"
                   size="lg"
                   onClick={handleDownload}
-                  className="flex-1 flex items-center justify-center gap-2"
+                  className="flex-1 min-w-[140px] max-w-[180px] flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   <Image
                     src="/descarga-icon.svg"
@@ -225,7 +225,7 @@ export default function FinalProcessingPage() {
                   variant="primary"
                   size="lg"
                   onClick={handleShare}
-                  className="flex-1 flex items-center justify-center gap-2"
+                  className="flex-1 min-w-[140px] max-w-[180px] flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   <Image
                     src="/compartir-icon.svg"
@@ -240,7 +240,7 @@ export default function FinalProcessingPage() {
             </div>
 
             {/* Copy Text */}
-            <div className="w-full max-w-sm mb-2">
+            <div className="w-full max-w-sm mb-2 mx-auto">
               <p className="paragraph text-white text-center mb-4 text-sm">
                 {t.finalProcessing.copyLabel}
               </p>
@@ -267,7 +267,7 @@ export default function FinalProcessingPage() {
               variant="primary"
               size="lg"
               onClick={handleRestart}
-              className="w-full max-w-sm"
+              className="w-full max-w-sm mx-auto"
             >
               {t.finalProcessing.buttonRestart}
             </Button>
