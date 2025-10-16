@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Magic Afflelou - Magic Sunny",
   description: "Ma Magic Sunny - Ma Création",
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
