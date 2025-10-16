@@ -25,7 +25,7 @@ export default function FormPage() {
     // Extract and save store from URL
     const pathParts = pathname.split('/').filter(Boolean);
     const knownRoutes = ['start', 'permission', 'take-selfie', 'validate-selfie', 'form', 'final-processing'];
-    
+
     if (pathParts.length > 0 && !knownRoutes.includes(pathParts[0])) {
       const storeName = pathParts[0];
       localStorage.setItem('current-store', storeName);
@@ -37,7 +37,7 @@ export default function FormPage() {
       router.push(buildPath('/start', pathname));
       return;
     }
-    
+
     const photos = JSON.parse(savedPhotos);
     if (photos.length < 4) {
       router.push(buildPath('/take-selfie', pathname));
@@ -101,7 +101,7 @@ export default function FormPage() {
     <div className="min-h-screen gradient-bg flex flex-col overflow-hidden">
       {/* Language Selector */}
       <div className="absolute top-4 right-6 z-10">
-        <LanguageSelector 
+        <LanguageSelector
           defaultLanguage={language}
           onLanguageChange={changeLanguage}
         />
@@ -125,7 +125,7 @@ export default function FormPage() {
         {/* Loading Bar */}
         <div className="w-full max-w-sm mb-12">
           <div className="h-2 bg-white/30 overflow-hidden">
-            <div 
+            <div
               className="h-full bg-white transition-all duration-300"
               style={{ width: isLoading ? '100%' : '0%' }}
             />
