@@ -58,7 +58,7 @@ export default function InicioPage() {
             className="w-full h-auto"
           >
             <source
-              src="https://dev.slash-digital.io/wp-content/uploads/2025/10/Gif-afflelou-v1.mp4"
+              src="https://dev.slash-digital.io/wp-content/uploads/2025/10/Gif-V2.mp4"
               type="video/mp4"
             />
           </video>
