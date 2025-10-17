@@ -84,8 +84,8 @@ export const translations = {
             buttonRestart: "RECOMMENCER",
             copyText: "J'AI ESSAYÉ LA COLLECTION MAGIC ET SES MAGIC CLIPS CHEZ AFFLELOU #MAGICSUNNY",
             copyLabel: "TEXTE SUGGÉRÉ POUR LE PARTAGE:",
-            generating: "GÉNÉRATION DU VIDÉO...",
-            error: "ERREUR LORS DE LA GÉNÉRATION DU VIDÉO"
+            generating: "Génération de la vidéo...",
+            error: "ERREUR LORS DE LA Génération de la vidéo"
         },
 
         // General
