@@ -194,7 +194,6 @@ export default function FinalProcessingPage() {
               <video
                 ref={videoRef}
                 src={videoUrl}
-                controls
                 autoPlay
                 loop
                 playsInline
