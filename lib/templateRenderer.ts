@@ -54,18 +54,26 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
 
   // Título destacado con padding y centrado verticalmente
   const highlightText = 'MA CRÉATION !';
-  const rectX = headerPadding;
-  const rectY = titleY + 20;
-  const rectWidth = VIDEO_CONFIG.WIDTH - (headerPadding * 2);
 
-  // Dibujar fondo blanco
+  // Medir el ancho del texto para ajustar el contenedor
+  ctx.font = `bold ${fontSize}px "ITC Avant Garde Gothic Std", Arial`;
+  const textMetrics = ctx.measureText(highlightText);
+  const textWidth = textMetrics.width;
+
+  // Padding horizontal dentro del contenedor blanco
+  const rectPaddingX = 40;
+  const rectWidth = textWidth + (rectPaddingX * 2);
+  const rectX = (VIDEO_CONFIG.WIDTH - rectWidth) / 2;
+  const rectY = titleY + 20;
+
+  // Dibujar fondo blanco ajustado al texto
   ctx.fillStyle = 'white';
   ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
   // Centrar texto verticalmente en el rectángulo
   ctx.fillStyle = gradient.start;
-  ctx.font = `bold ${fontSize}px "ITC Avant Garde Gothic Std", Arial`;
   ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
   ctx.fillText(highlightText, VIDEO_CONFIG.WIDTH / 2, rectY + rectHeight / 2);
 
   // Grid de fotos (2x2)
@@ -152,15 +160,15 @@ export async function renderFinalFrame(frameIndex: number, totalFrames: number, 
     // Crear canvas temporal para convertir logo a blanco
     const tempCanvas = createCanvas(logoWidth, logoHeight);
     const tempCtx = tempCanvas.getContext('2d');
-    
+
     // Dibujar logo original
     tempCtx.drawImage(logoImg, 0, 0, logoWidth, logoHeight);
-    
+
     // Convertir a blanco manteniendo el alpha
     tempCtx.globalCompositeOperation = 'source-in';
     tempCtx.fillStyle = '#FFFFFF';
     tempCtx.fillRect(0, 0, logoWidth, logoHeight);
-    
+
     // Efecto fade: aumentar opacidad gradualmente entre frames
     const fadeOpacity = 0.2 + (frameIndex / (totalFrames - 1)) * 0.6;
     ctx.globalAlpha = fadeOpacity;
