@@ -26,15 +26,14 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
   ctx.fillRect(0, 0, VIDEO_CONFIG.WIDTH, VIDEO_CONFIG.HEIGHT);
 
   // Calcular centrado vertical de todos los elementos
-  // 👉 AJUSTA AQUÍ EL TAMAÑO DE TEXTO: cambia el valor de fontSize
-  const headerPadding = 60;
-  const fontSize = 90;
+  const topTitleFontSize = 110; // "MA MAGIC SUNNY" más grande
+  const bottomTitleFontSize = 90; // "MA CRÉATION !" más pequeño
   const gridSize = 1000;
-  const logoHeight = 150; // Altura estimada del logo
+  const logoHeight = 150;
 
   // Calcular altura total de contenido
-  const titleHeight = fontSize;
-  const rectHeight = fontSize + 60;
+  const titleHeight = topTitleFontSize;
+  const rectHeight = bottomTitleFontSize + 6; // Padding mínimo (3px arriba + 3px abajo)
   const spaceBetweenTitleAndGrid = 60;
   const spaceBetweenGridAndLogo = 80;
   const totalContentHeight = titleHeight + rectHeight + spaceBetweenTitleAndGrid + gridSize + spaceBetweenGridAndLogo + logoHeight;
@@ -42,21 +41,20 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
   // Calcular offset para centrar verticalmente
   const startY = (VIDEO_CONFIG.HEIGHT - totalContentHeight) / 2;
 
-  // Header - Título (90px con padding)
+  // Header - Título "MA MAGIC SUNNY," (más grande)
   ctx.fillStyle = 'white';
-  ctx.font = `bold ${fontSize}px "ITC Avant Garde Gothic Std", Arial`;
+  ctx.font = `bold ${topTitleFontSize}px "ITC Avant Garde Gothic Std", Arial`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
 
-  // 👉 AJUSTA AQUÍ LA POSICIÓN VERTICAL DEL TÍTULO: cambia titleY
-  const titleY = startY + fontSize;
+  const titleY = startY + topTitleFontSize;
   ctx.fillText('MA MAGIC SUNNY,', VIDEO_CONFIG.WIDTH / 2, titleY);
 
-  // Título destacado con padding y centrado verticalmente
+  // Título destacado "MA CRÉATION !" (más pequeño)
   const highlightText = 'MA CRÉATION !';
 
   // Medir el ancho del texto para ajustar el contenedor
-  ctx.font = `bold ${fontSize}px "ITC Avant Garde Gothic Std", Arial`;
+  ctx.font = `bold ${bottomTitleFontSize}px "ITC Avant Garde Gothic Std", Arial`;
   const textMetrics = ctx.measureText(highlightText);
   const textWidth = textMetrics.width;
 
@@ -66,25 +64,21 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
   const rectX = (VIDEO_CONFIG.WIDTH - rectWidth) / 2;
   const rectY = titleY + 30;
 
-  // Ajustar altura del rectángulo para mejor centrado
-  const adjustedRectHeight = fontSize + 40;
-
-  // Dibujar fondo blanco ajustado al texto
+  // Dibujar fondo blanco ajustado al texto con padding mínimo
   ctx.fillStyle = 'white';
-  ctx.fillRect(rectX, rectY, rectWidth, adjustedRectHeight);
+  ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
-  // Centrar texto verticalmente en el rectángulo usando alphabetic baseline
+  // Centrar texto verticalmente en el rectángulo
   ctx.fillStyle = gradient.start;
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'center';
-  // Posicionar el texto considerando que alphabetic está en la línea base
-  const textY = rectY + (adjustedRectHeight / 2) + (fontSize * 0.35) + 2;
+  // Posicionar el texto con padding de 3px
+  const textY = rectY + (rectHeight / 2) + (bottomTitleFontSize * 0.35);
   ctx.fillText(highlightText, VIDEO_CONFIG.WIDTH / 2, textY);
 
   // Grid de fotos (2x2)
-  // 👉 AJUSTA AQUÍ LA POSICIÓN DEL GRID: cambia gridY para mover las fotos
   const gridX = (VIDEO_CONFIG.WIDTH - gridSize) / 2;
-  const gridY = rectY + adjustedRectHeight + spaceBetweenTitleAndGrid;
+  const gridY = rectY + rectHeight + spaceBetweenTitleAndGrid;
   const photoSize = (gridSize - VIDEO_CONFIG.GRID_GAP) / 2;
 
   const positions = [
