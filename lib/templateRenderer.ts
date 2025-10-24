@@ -64,22 +64,27 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
   const rectPaddingX = 40;
   const rectWidth = textWidth + (rectPaddingX * 2);
   const rectX = (VIDEO_CONFIG.WIDTH - rectWidth) / 2;
-  const rectY = titleY + 20;
+  const rectY = titleY + 30;
+
+  // Ajustar altura del rectángulo para mejor centrado
+  const adjustedRectHeight = fontSize + 40;
 
   // Dibujar fondo blanco ajustado al texto
   ctx.fillStyle = 'white';
-  ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+  ctx.fillRect(rectX, rectY, rectWidth, adjustedRectHeight);
 
-  // Centrar texto verticalmente en el rectángulo
+  // Centrar texto verticalmente en el rectángulo usando alphabetic baseline
   ctx.fillStyle = gradient.start;
-  ctx.textBaseline = 'middle';
+  ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'center';
-  ctx.fillText(highlightText, VIDEO_CONFIG.WIDTH / 2, rectY + rectHeight / 2);
+  // Posicionar el texto considerando que alphabetic está en la línea base
+  const textY = rectY + (adjustedRectHeight / 2) + (fontSize * 0.35);
+  ctx.fillText(highlightText, VIDEO_CONFIG.WIDTH / 2, textY);
 
   // Grid de fotos (2x2)
   // 👉 AJUSTA AQUÍ LA POSICIÓN DEL GRID: cambia gridY para mover las fotos
   const gridX = (VIDEO_CONFIG.WIDTH - gridSize) / 2;
-  const gridY = rectY + rectHeight + spaceBetweenTitleAndGrid;
+  const gridY = rectY + adjustedRectHeight + spaceBetweenTitleAndGrid;
   const photoSize = (gridSize - VIDEO_CONFIG.GRID_GAP) / 2;
 
   const positions = [
