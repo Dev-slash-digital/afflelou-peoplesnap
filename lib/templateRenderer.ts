@@ -78,7 +78,7 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'center';
   // Posicionar el texto considerando que alphabetic está en la línea base
-  const textY = rectY + (adjustedRectHeight / 2) + (fontSize * 0.35);
+  const textY = rectY + (adjustedRectHeight / 2) + (fontSize * 0.35) + 2;
   ctx.fillText(highlightText, VIDEO_CONFIG.WIDTH / 2, textY);
 
   // Grid de fotos (2x2)
