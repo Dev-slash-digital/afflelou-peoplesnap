@@ -33,7 +33,7 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
 
   // Calcular altura total de contenido
   const titleHeight = topTitleFontSize;
-  const rectHeight = bottomTitleFontSize + 20; // Espacio para acentos (10px arriba + 10px abajo)
+  const rectHeight = bottomTitleFontSize + 12; // Contenedor ajustado
   const spaceBetweenTitleAndGrid = 60;
   const spaceBetweenGridAndLogo = 80;
   const totalContentHeight = titleHeight + rectHeight + spaceBetweenTitleAndGrid + gridSize + spaceBetweenGridAndLogo + logoHeight;
@@ -64,16 +64,16 @@ export async function renderFrame(photos: string[], outputPath: string, frameInd
   const rectX = (VIDEO_CONFIG.WIDTH - rectWidth) / 2;
   const rectY = titleY + 30;
 
-  // Dibujar fondo blanco ajustado al texto
+  // Dibujar fondo blanco pequeño
   ctx.fillStyle = 'white';
   ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
-  // Centrar texto verticalmente en el rectángulo, bajándolo un poco más
+  // Bajar el texto dentro del contenedor para dar espacio arriba a los acentos
   ctx.fillStyle = gradient.start;
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'center';
-  // Posicionar el texto más abajo para dar espacio a los acentos
-  const textY = rectY + (rectHeight / 2) + (bottomTitleFontSize * 0.38);
+  // Bajar el texto más para reducir espacio inferior
+  const textY = rectY + rectHeight - 8;
   ctx.fillText(highlightText, VIDEO_CONFIG.WIDTH / 2, textY);
 
   // Grid de fotos (2x2)
